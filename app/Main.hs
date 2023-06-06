@@ -1,6 +1,7 @@
-module Main (main) where
-
-import Lib
+import Application () -- for YesodDispatch instance
+import Foundation
+import Yesod.Core
+import Opts
 
 main :: IO ()
-main = someFunc
+main = warp 3000 App
