@@ -7,6 +7,11 @@ dependencies:
 - smtp-mail 
 - optparse-applicative 
 - persistent-sqlite
+- persistent
+- unliftio-core
+- text
+- monad-logger
+- conduit
 
 # The library contains all of our application code. The executable
 # defined below is just a thin wrapper.

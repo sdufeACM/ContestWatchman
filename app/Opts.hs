@@ -46,7 +46,7 @@ insertCommand = fmap InsertItem itemParser
         <*> option
           auto
           ( long "duration"
-              <> metavar "MILLSECOND"
+              <> metavar "MINUTE(S)"
               <> value 0
               <> help "Contest lasted time"
           )
