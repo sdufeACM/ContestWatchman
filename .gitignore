@@ -22,3 +22,8 @@ cabal.sandbox.config
 /bin
 /build
 ContestWatchman.cabal
+
+# Added by cargo
+
+/target
+/contest.db
