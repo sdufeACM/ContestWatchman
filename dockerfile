@@ -1,6 +1,7 @@
 FROM archlinux
 LABEL maintainer="mslxl <i@mslxl.com>"
 ENV ContestWatchmanVersion 0.0.0
+ENV WATCHMAN_DATABASE /cw/contest.db
 
 # RUN yes | pacman -Sy gmp ca-certificates
 
