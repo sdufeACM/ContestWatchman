@@ -5,7 +5,7 @@ use std::{
     hash::{Hash, Hasher},
     ops::Sub,
 };
-use time::{Duration, OffsetDateTime, UtcOffset};
+use time::{Duration, OffsetDateTime, UtcOffset, format_description::well_known::Rfc3339};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Contest {
@@ -64,6 +64,16 @@ struct AtomEntry {
     content: Contest,
 }
 
+impl AtomEntry{
+    pub fn start_time(&self)->String{
+        self.content.start_time.format(&Rfc3339).unwrap()
+    }
+    pub fn end_time(&self)->String{
+        self.content.end_time.format(&Rfc3339).unwrap()
+    }
+}
+
+
 impl From<Contest> for AtomEntry {
     fn from(v: Contest) -> Self {
         let duration = v.duration();
@@ -86,7 +96,7 @@ impl AtomContext {
             .iter()
             .map(|v| v.start_time)
             .min()
-            .unwrap_or_else(|| OffsetDateTime::UNIX_EPOCH);
+            .unwrap_or(OffsetDateTime::now_utc());
 
         let entries = value.into_iter().map(|v| v.into()).collect();
 
@@ -95,5 +105,9 @@ impl AtomContext {
             last_build,
             url,
         }
+    }
+
+    pub fn build_time(&self)->String{
+        self.last_build.format(&Rfc3339).unwrap()
     }
 }

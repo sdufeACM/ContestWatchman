@@ -4,12 +4,12 @@
   <link type="text/html" rel="alternate" href="https://contest.sdufeacm.club"/>
   <link type="application/atom+xml" rel="self" href="{{url}}"/>
   <title>Recent Contest</title>
-  <updated>{{last_build}}</updated>
+  <updated>{{ self.build_time() }}</updated>
   {% for entry in entries %}
   <entry>
     <id>tag:sdufeacm.club,2023:WatchEvent/{entry.id}</id>
-    <published>{{entry.content.start_time}}</published>
-    <updated>{{entry.content.start_time}}</updated>
+    <published>{{entry.start_time()}}</published>
+    <updated>{{entry.start_time()}}</updated>
     {% if entry.content.link.is_some() -%}
     <link type="text/html" rel="alternate" href="{{entry.content.link.as_ref().unwrap()}}"/>
     {%- endif %}
