@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:sdufeacm.club,2023:/mslxl</id>
+  <link type="text/html" rel="alternate" href="https://contest.sdufeacm.club"/>
+  <link type="application/atom+xml" rel="self" href="{{url}}"/>
+  <title>Recent Contest</title>
+  <updated>{{last_build}}</updated>
+  {% for entry in entries %}
+  <entry>
+    <id>tag:sdufeacm.club,2023:WatchEvent/{entry.id}</id>
+    <published>{{entry.content.start_time}}</published>
+    <updated>{{entry.content.start_time}}</updated>
+    {% if entry.content.link.is_some() -%}
+    <link type="text/html" rel="alternate" href="{{entry.content.link.as_ref().unwrap()}}"/>
+    {%- endif %}
+    <title type="html">{{entry.content.source}}: {{entry.content.name}}</title>
+    <author>
+      <name>{{entry.content.source}}</name>
+      {% if entry.content.link.is_some() -%}
+          <uri>{{ entry.content.link.as_ref().unwrap() }}</uri>
+      {%- endif %}
+    </author>
+    <!-- <media:thumbnail height="30" width="30" url=""/> -->
+    <content type="html">
+&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;Start time: &lt;/td&gt;
+&lt;td&gt;{{ entry.content.start_time  }}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;End time: &lt;/td&gt;
+&lt;td&gt;{{ entry.content.end_time  }}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Duration:&lt;/td&gt;
+&lt;td&gt;  {{ entry.duration }} hour(s)&lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+    </content>
+  </entry>
+  {% endfor %}
+</feed>

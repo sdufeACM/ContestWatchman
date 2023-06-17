@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.71"
+askama = "0.12.0"
 clap = { version = "4.3.4", features = ["derive"] }
 reqwest = "0.11.18"
 rusqlite = { version = "0.29.0", features=["bundled"] }
