@@ -57,19 +57,19 @@ pub fn open_db() -> Connection {
     connection
 }
 
-pub fn insert_db(conn: &Connection, item: &Contest) -> Result<(), anyhow::Error> {
+pub fn insert_db(conn: &Connection, item: &Contest) -> Result<bool, anyhow::Error> {
     let ret = conn.execute(
     "INSERT INTO contest(hash_key, source, name, start_time, end_time, link) VALUES (?1, ?2, ?3, ?4, ?5, ?6)", 
     (item.id().to_string(), &item.source, &item.name, item.start_time.format(&Rfc3339).unwrap(), item.end_time.format(&Rfc3339).unwrap(), &item.link));
     if let Err(e) = ret {
         if let Some(ErrorCode::ConstraintViolation) = e.sqlite_error_code() {
-            Ok(())
+            Ok(false)
         } else {
             Err(e.into())
         }
     } else {
         println!("Insert: {:?}", item);
-        Ok(())
+        Ok(true)
     }
 }
 
