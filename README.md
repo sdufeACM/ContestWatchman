@@ -1,3 +1,8 @@
+**This feature wsa bundled to provlegisto as application trayer, the program was no longer maintain**
+
+**See [Provlegisto](https://github.com/mslxl/provlegisto) for more information**
+
+
 # ContestWatchman
 
 ContestWatchman, the abbr of Recent Contest Night's Watchman
